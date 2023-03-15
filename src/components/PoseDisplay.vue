@@ -18,8 +18,8 @@ export default {
 
 <template>
   <div class="pose-item">
-    <img :src="`https://openposes-storage.s3.ca-central-1.amazonaws.com/${pose.name}.png`" :alt="pose.name" />
-    <img :src="`https://openposes-storage.s3.ca-central-1.amazonaws.com/${this.modelStore.selectedModel}/${pose.name}.png`" :alt="`${this.modelStore.selectedModel}_${pose.name}`" />
+    <img :src="`https://openposes-storage.s3.ca-central-1.amazonaws.com/poses/${this.modelStore.selectedModel}/${pose.name}.jpg`" :alt="`${this.modelStore.selectedModel}_${pose.name}`" />
+    <img :src="`https://openposes-storage.s3.ca-central-1.amazonaws.com/poses/${pose.name}.png`" :alt="pose.name" />
     <div class="button-container">
       <a href="#">Download</a>
     </div>
@@ -40,6 +40,17 @@ export default {
       right: 0;
       bottom: 0;
       left: 0;
+      width: 100%;
+      height: 100%;
+
+      &:nth-child(2) {
+        opacity: 0.3;
+        transition: opacity 0.1s ease;
+
+        &:hover {
+          opacity: 0.8;
+        }
+      }
     }
 
     .button-container {
