@@ -1,5 +1,5 @@
 <script>
-import { useModelStore } from  '../stores/model';
+import { useModelStore } from  '@/stores/model';
 
 export default {
   name: "PoseDisplay",
@@ -17,14 +17,13 @@ export default {
 </script>
 
 <template>
-  <div class="pose-item">
-    <img :src="`https://openposes-storage.s3.ca-central-1.amazonaws.com/poses/${this.modelStore.selectedModel}/${pose.name}.jpg`" :alt="`${this.modelStore.selectedModel}_${pose.name}`" />
-    <img :src="`https://openposes-storage.s3.ca-central-1.amazonaws.com/poses/${pose.name}.png`" :alt="pose.name" />
-    <div class="button-container">
-      <a href="#">Download</a>
-    </div>
-
-  </div>
+  <a target="_blank" :href="`https://openposes-storage.s3.ca-central-1.amazonaws.com/poses/${pose.name}.png`" :download="`${pose.name}.png`" class="pose-item">
+    <img :src="`https://openposes-storage.s3.ca-central-1.amazonaws.com/poses/${this.modelStore.selectedModel}/jpg/${pose.name}.jpg`"
+         :alt="`${this.modelStore.selectedModel}_${pose.name}`" />
+    <img :src="`https://openposes-storage.s3.ca-central-1.amazonaws.com/poses/transparent/${pose.name}.png`"
+         :alt="pose.name" />
+    <span>Click to Download</span>
+  </a>
 </template>
 
 <style lang="scss" scoped>
@@ -42,25 +41,34 @@ export default {
       left: 0;
       width: 100%;
       height: 100%;
+      opacity: 0.9;
+      transition: opacity 0.1s ease;
 
       &:nth-child(2) {
-        opacity: 0.3;
-        transition: opacity 0.1s ease;
-
-        &:hover {
-          opacity: 0.8;
-        }
+        opacity: 0.75;
       }
     }
 
-    .button-container {
+    span {
       position: absolute;
       width: 100%;
-      bottom: 3px;
+      bottom: 10px;
       text-align: center;
+      opacity: 0;
+      transition: opacity 0.1s ease;
+    }
 
-      a {
+    &:hover {
+      img {
+        opacity: 0.3;
 
+        &:nth-child(2) {
+          opacity: 1;
+        }
+      }
+
+      span {
+        opacity: 1;
       }
     }
   }

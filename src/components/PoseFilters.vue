@@ -1,6 +1,6 @@
 <script>
-import { poses } from "../consts/consts";
-import { useFilterStore } from  '../stores/filter';
+import { poses } from "@/consts/consts";
+import { useFilterStore } from  '@/stores/filter';
 
 export default {
   name: "PoseFilters",
@@ -21,14 +21,19 @@ export default {
       }
 
       this.filterStore.addFilter(filter);
-    }
+    },
+    tagName(tagSlug) {
+      return tagSlug.split('_')
+          .map(word => word[0].toUpperCase() + word.substring(1))
+          .join(' ');
+    },
   },
 };
 </script>
 
 <template>
   <div v-for="tag in tags" :key="tag" @click="toggleFilter(tag)" :class="(filterStore.activeFilters.includes(tag) ? 'active' : '')">
-    {{ tag[0].toUpperCase() + tag.substring(1) }}
+    {{ tagName(tag) }}
   </div>
 </template>
 
@@ -42,6 +47,7 @@ export default {
     padding: 0.65rem 0.85rem;
     margin: 0 0.75rem 1rem 0;
     opacity: 0.5;
+    transition: opacity 0.1s ease;
 
     &:hover, &.active {
       cursor: pointer;

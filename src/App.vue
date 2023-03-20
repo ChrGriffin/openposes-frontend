@@ -1,5 +1,5 @@
 <script>
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView } from 'vue-router'
 import { useModelStore } from "./stores/model";
 
 export default {
@@ -15,7 +15,7 @@ export default {
       models: [
           'emma_watson',
           'idris_elba',
-          'salma_hayek',
+          'summer_glau',
           'henry_cavill'
       ],
     };
@@ -45,21 +45,33 @@ export default {
             <span>Model: {{ selectedModelName }}</span>
             <i :class="`fa-solid fa-caret-${selectModelModalOpen ? 'up' : 'down'}`"></i>
             <div :class="`model-modal${selectModelModalOpen ? '' : ' hidden'}`">
-              <img v-for="model in models" :key="model" @click="(modelStore.setSelectedModel(model))" :class="(modelStore.selectedModel === model ? 'selected' : '')" :src="`https://openposes-storage.s3.ca-central-1.amazonaws.com/${model}.png`" :alt="model">
+              <img v-for="model in models" :key="model" @click="(modelStore.setSelectedModel(model))" :class="(modelStore.selectedModel === model ? 'selected' : '')" :src="`https://openposes-storage.s3.ca-central-1.amazonaws.com/models/${model}.jpg`" :alt="model">
             </div>
           </button>
 
-          <button>
-            <span>Download All</span>
-            <i class="fa-solid fa-download"></i>
-          </button>
+          <a target="_blank" href="https://openposes-storage.s3.ca-central-1.amazonaws.com/poses.zip" download="poses.zip">
+            <button>
+              <span>Download All</span>
+              <i class="fa-solid fa-download"></i>
+            </button>
+          </a>
         </div>
       </nav>
     </div>
   </header>
+
   <main>
     <RouterView @click="(selectModelModalOpen = false)" />
   </main>
+
+  <footer>
+    <span class="powered">Powered by:
+      <a target="_blank" href="https://vuejs.org/"><img src="https://openposes-storage.s3.ca-central-1.amazonaws.com/icons/vue.png" alt="Vue" /></a>
+      <a target="_blank" href="https://www.netlify.com/"><img src="https://openposes-storage.s3.ca-central-1.amazonaws.com/icons/netlify.png" alt="Netlify" /></a>
+      <a target="_blank" href="https://aws.amazon.com/"><img src="https://openposes-storage.s3.ca-central-1.amazonaws.com/icons/aws.png" alt="AWS" /></a>
+    </span>
+    <span>Created by <a target="_blank" href="https://christiangriffin.ca/">Christian Griffin</a> in 2023.</span>
+  </footer>
 </template>
 
 <style lang="scss">
@@ -68,8 +80,10 @@ export default {
   @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css");
 
   body {
-    background-color: #43454b;
+    background-color: #39393f;
     font-family: 'Roboto Mono', monospace;
+    padding-top: 1rem;
+    color: #dedede;
   }
 
   button {
@@ -80,6 +94,7 @@ export default {
     background-color: transparent;
     border: 0;
     color: #dedede;
+    transition: color 0.1s ease, background-color 0.1s ease;
 
     i {
       padding-left: 0.75rem;
@@ -93,10 +108,15 @@ export default {
   }
 
   nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
     background-color: #0a0a0a;
     color: #dedede;
     display: flex;
     justify-content: space-between;
+    z-index: 99;
 
     h1 {
       display: inline-block;
@@ -107,6 +127,11 @@ export default {
     .subtitle {
       font-size: 0.75rem;
       font-style: italic;
+      display: none;
+
+      @media (min-width: 1024px) {
+        display: inline;
+      }
     }
 
     .model-modal {
@@ -144,7 +169,58 @@ export default {
     }
   }
 
-  main {
+  footer {
+    background-color: #0a0a0a;
+    color: #dedede;
+    display: flex;
+    justify-content: space-between;
     padding: 1rem;
+
+    span {
+      font-size: 0.8rem;
+
+      &.powered {
+        display: flex;
+
+        a {
+          text-decoration: none;
+          display: inline-block;
+          margin-left: 0.75rem;
+
+          img {
+            max-height: 1rem;
+          }
+        }
+      }
+    }
+  }
+
+  section {
+    padding: 3rem 1rem;
+  }
+
+  article {
+    margin: 0 auto;
+    max-width: 100rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+
+    &:not(:first-child) {
+      margin-top: 3rem;
+    }
+  }
+
+  p {
+    margin-bottom: 1rem;
+    line-height: 1.3;
+    font-size: 1.1rem;
+  }
+
+  a {
+    color: #dedede;
+    text-decoration: underline;
   }
 </style>

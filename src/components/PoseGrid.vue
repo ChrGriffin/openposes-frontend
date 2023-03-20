@@ -1,6 +1,6 @@
 <script>
-import PoseDisplay from "./PoseDisplay.vue";
-import { useFilterStore } from  '../stores/filter';
+import PoseDisplay from "@/components/PoseDisplay.vue";
+import { useFilterStore } from  '@/stores/filter';
 
 export default {
   name: "PoseGrid",
@@ -40,7 +40,23 @@ export default {
 <style lang="scss" scoped>
   .grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-gap: 10px;
+
+    @media (min-width: 712px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media (min-width: 1024px) {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    @media (min-width: 1280px) {
+      grid-template-columns: repeat(5, 1fr);
+    }
+
+    @media (min-width: 1440px) {
+      grid-template-columns: repeat(6, 1fr);
+    }
   }
 </style>
