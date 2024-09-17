@@ -1,14 +1,14 @@
 <script>
 import PoseGrid from "@/components/PoseGrid.vue";
 import PoseFilters from "@/components/PoseFilters.vue";
-import { poses } from "@/consts/consts";
+import { POSES } from "@/consts/consts";
 
 export default {
   name: "HomeView",
   components: {PoseFilters, PoseGrid },
   data: function () {
     return {
-      poses: poses
+      poses: POSES
     };
   },
 };
@@ -26,7 +26,7 @@ export default {
         <div>
           <h2>OpenPose & ControlNet</h2>
           <p><a target="_blank" href="https://github.com/lllyasviel/ControlNet">ControlNet</a> is a way of adding <a target="_blank" href="https://arxiv.org/abs/2302.05543">conditional control</a> to the output of Text-to-Image diffusion models, such as Stable Diffusion. In layman's terms, it allows us to direct the model to maintain or prioritize a particular pattern when generating output. There are many applications of this idea, but an incredibly common use case is generating a consistent pose for human subjects.</p>
-          <p><a target="_blank" href="https://github.com/CMU-Perceptual-Computing-Lab/openpose">OpenPose</a>, meanwhile, is a human pose detection library that works by detecting multiple "keypoints" in a the human body and converting that information into a consistent "skeleton" representing the person.</p>
+          <p><a target="_blank" href="https://github.com/CMU-Perceptual-Computing-Lab/openpose">OpenPose</a>, meanwhile, is a human pose detection library that works by detecting multiple "keypoints" in a human body and converting that information into a consistent "skeleton" representing the person.</p>
           <p>Combine the two and we now have the ability to use OpenPose skeletons to control the pose of subjects in Stable Diffusion outputs, removing a great deal of the randomness and allowing us to be more intentional with our outputs than ever before.</p>
           <p>Of course, OpenPose is not the only available model for ControlNot. Multiple other models, such as Semantic Suggestion, User Scribbles, and HED Boundary are available. Consult the <a target="_blank" href="https://github.com/lllyasviel/ControlNet">ControlNet GitHub page</a> for a full list.</p>
           <h2>This Site</h2>
