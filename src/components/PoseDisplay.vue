@@ -1,11 +1,13 @@
 <script>
 import {useModelStore} from '@/stores/model';
-import LoaderIcon from "@/components/LoaderIcon.vue";
+import LoaderIcon from "@/components/icons/LoaderIcon.vue";
 import {KEYPOINT_PAIRS, KEYPOINTS} from "@/consts/consts";
+import JsonIcon from "@/components/icons/JsonIcon.vue";
+import ImageIcon from "@/components/icons/ImageIcon.vue";
 
 export default {
   name: "PoseDisplay",
-  components: {LoaderIcon},
+  components: {ImageIcon, JsonIcon, LoaderIcon},
   setup: function () {
     const modelStore = useModelStore();
     return {modelStore};
@@ -112,8 +114,8 @@ export default {
       <h3>Download</h3>
       <div>
         <a target="_blank" :href="`https://openposes-storage.s3.ca-central-1.amazonaws.com/poses/${pose.name}.json`"
-           download="`${pose.name}.json`">JSON</a>
-        <a target="_blank" :href="downloadImage" :download="`${pose.name}.png`">Image</a>
+           download="`${pose.name}.json`"><json-icon />JSON</a>
+        <a target="_blank" :href="downloadImage" :download="`${pose.name}.png`"><image-icon/>Image</a>
       </div>
     </div>
     <div v-if="!image" class="loading">
@@ -158,7 +160,7 @@ export default {
     }
 
     > div {
-      border: 2px solid #dedede;
+      border-top: 2px solid #dedede;
       margin-top: 15px;
       display: flex;
       text-align: center;
@@ -168,6 +170,14 @@ export default {
         padding: 10px 0;
         flex-grow: 1;
         text-decoration: none;
+        transition: color 0.1s ease, background-color 0.05s ease;
+
+        svg {
+          display: inline;
+          height: 0.8rem;
+          padding-right: 10px;
+          color: inherit;
+        }
 
         &:first-child {
           border-right: 1px solid #dedede;
@@ -180,6 +190,7 @@ export default {
         &:hover {
           color: #313136;
           background-color: #dedede;
+          transition: color 0.1s ease, background-color 0.05s ease;
         }
       }
     }
