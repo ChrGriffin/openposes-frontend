@@ -36,20 +36,20 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  svg {
-    opacity: 0.75;
-    animation-name: spin;
-    animation-duration: 2500ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-  }
+svg {
+  opacity: 0.75;
+  animation-name: spin;
+  animation-duration: 2500ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
 
-  @keyframes spin {
-    from {
-      transform:rotate(0deg);
-    }
-    to {
-      transform:rotate(720deg);
-    }
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
   }
+  to {
+    transform: rotate(720deg);
+  }
+}
 </style>
