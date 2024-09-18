@@ -1,12 +1,12 @@
 <script>
-import { poses } from "@/consts/consts";
+import { POSES } from "@/consts/consts";
 import { useFilterStore } from  '@/stores/filter';
 
 export default {
   name: "PoseFilters",
   data: function () {
     return {
-      tags: [...new Set(poses.flatMap(pose => pose.tags))]
+      tags: [...new Set(POSES.flatMap(pose => pose.tags))]
     }
   },
   setup: function () {

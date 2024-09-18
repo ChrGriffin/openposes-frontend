@@ -1,4 +1,72 @@
-export const poses = [
+export const KEYPOINT_INDEXES = {
+    'Nose': 0,
+    'Neck': 1,
+    'R-Sho': 2,
+    'R-Elb': 3,
+    'R-Wr': 4,
+    'L-Sho': 5,
+    'L-Elb': 6,
+    'L-Wr': 7,
+    'R-Hip': 8,
+    'R-Knee': 9,
+    'R-Ank': 10,
+    'L-Hip': 11,
+    'L-Knee': 12,
+    'L-Ank': 13,
+    'R-Eye': 14,
+    'L-Eye': 15,
+    'R-Ear': 16,
+    'L-Ear': 17
+};
+
+export const KEYPOINTS = {
+    [KEYPOINT_INDEXES['Nose']]: {'color': 'rgb(255, 0, 0)'},
+    [KEYPOINT_INDEXES['Neck']]: {'color': 'rgb(255, 85, 0)'},
+    [KEYPOINT_INDEXES['R-Sho']]: {'color': 'rgb(255, 170, 0)'},
+    [KEYPOINT_INDEXES['R-Elb']]: {'color': 'rgb(255, 255, 0)'},
+    [KEYPOINT_INDEXES['R-Wr']]: {'color': 'rgb(170, 255, 0)'},
+    [KEYPOINT_INDEXES['L-Sho']]: {'color': 'rgb(85, 255, 0)'},
+    [KEYPOINT_INDEXES['L-Elb']]: {'color': 'rgb(0, 255, 0)'},
+    [KEYPOINT_INDEXES['L-Wr']]: {'color': 'rgb(0, 255, 85)'},
+    [KEYPOINT_INDEXES['R-Hip']]: {'color': 'rgb(0, 255, 170)'},
+    [KEYPOINT_INDEXES['R-Knee']]: {'color': 'rgb(0, 255, 255)'},
+    [KEYPOINT_INDEXES['R-Ank']]: {'color': 'rgb(0, 170, 255)'},
+    [KEYPOINT_INDEXES['L-Hip']]: {'color': 'rgb(0, 85, 255)'},
+    [KEYPOINT_INDEXES['L-Knee']]: {'color': 'rgb(0, 0, 255)'},
+    [KEYPOINT_INDEXES['L-Ank']]: {'color': 'rgb(85, 0, 255)'},
+    [KEYPOINT_INDEXES['R-Eye']]: {'color': 'rgb(170, 0, 255)'},
+    [KEYPOINT_INDEXES['L-Eye']]: {'color': 'rgb(255, 0, 255)'},
+    [KEYPOINT_INDEXES['R-Ear']]: {'color': 'rgb(255, 0, 170)'},
+    [KEYPOINT_INDEXES['L-Ear']]: {'color': 'rgb(255, 0, 85)'},
+}
+
+export const KEYPOINT_PAIRS = {
+    [`${KEYPOINT_INDEXES['Nose']}-${KEYPOINT_INDEXES['R-Eye']}`]: {'color': 'rgba(85, 0, 255, 0.6)'},
+    [`${KEYPOINT_INDEXES['R-Eye']}-${KEYPOINT_INDEXES['R-Ear']}`]: {'color': 'rgba(170, 0, 255, 0.6)'},
+
+    [`${KEYPOINT_INDEXES['Nose']}-${KEYPOINT_INDEXES['L-Eye']}`]: {'color': 'rgba(255, 0, 255, 0.6)'},
+    [`${KEYPOINT_INDEXES['L-Eye']}-${KEYPOINT_INDEXES['L-Ear']}`]: {'color': 'rgba(255, 0, 170, 0.6)'},
+
+    [`${KEYPOINT_INDEXES['Neck']}-${KEYPOINT_INDEXES['Nose']}`]: {'color': 'rgba(0, 0, 255, 0.6)'},
+
+    [`${KEYPOINT_INDEXES['Neck']}-${KEYPOINT_INDEXES['R-Sho']}`]: {'color': 'rgba(255, 0, 0, 0.6)'},
+    [`${KEYPOINT_INDEXES['R-Sho']}-${KEYPOINT_INDEXES['R-Elb']}`]: {'color': 'rgba(255, 170, 0, 0.6)'},
+    [`${KEYPOINT_INDEXES['R-Elb']}-${KEYPOINT_INDEXES['R-Wr']}`]: {'color': 'rgba(255, 255, 0, 0.6)'},
+
+    [`${KEYPOINT_INDEXES['Neck']}-${KEYPOINT_INDEXES['L-Sho']}`]: {'color': 'rgba(255, 85, 0, 0.6)'},
+    [`${KEYPOINT_INDEXES['L-Sho']}-${KEYPOINT_INDEXES['L-Elb']}`]: {'color': 'rgba(170, 255, 0, 0.6)'},
+    [`${KEYPOINT_INDEXES['L-Elb']}-${KEYPOINT_INDEXES['L-Wr']}`]: {'color': 'rgba(85, 255, 0, 0.6)'},
+
+    [`${KEYPOINT_INDEXES['Neck']}-${KEYPOINT_INDEXES['R-Hip']}`]: {'color': 'rgba(0, 255, 0, 0.6)'},
+    [`${KEYPOINT_INDEXES['R-Hip']}-${KEYPOINT_INDEXES['R-Knee']}`]: {'color': 'rgba(0, 255, 85, 0.6)'},
+    [`${KEYPOINT_INDEXES['R-Knee']}-${KEYPOINT_INDEXES['R-Ank']}`]: {'color': 'rgba(0, 255, 170, 0.6)'},
+
+    [`${KEYPOINT_INDEXES['Neck']}-${KEYPOINT_INDEXES['L-Hip']}`]: {'color': 'rgba(0, 255, 255, 0.6)'},
+    [`${KEYPOINT_INDEXES['L-Hip']}-${KEYPOINT_INDEXES['L-Knee']}`]: {'color': 'rgba(0, 170, 255, 0.6)'},
+    [`${KEYPOINT_INDEXES['L-Knee']}-${KEYPOINT_INDEXES['L-Ank']}`]: {'color': 'rgba(0, 85, 170, 0.6)'},
+};
+
+export const POSES = [
     {
         name: 'tpose_01',
         tags: [
