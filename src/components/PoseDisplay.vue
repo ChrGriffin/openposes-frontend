@@ -43,12 +43,10 @@ export default {
       const blackCanvas = this.makeCanvas(this.json[0].canvas_width, this.json[0].canvas_height);
       const blackCtx = blackCanvas.getContext('2d');
       this.drawBackground(blackCtx, this.json[0].canvas_width, this.json[0].canvas_height)
+      this.drawPose(blackCtx);
 
-      const transparentPoseSrc = transparentCanvas.toDataURL('image/png');
-      this.addImageOverlayToCanvas(blackCtx, transparentPoseSrc);
-
+      this.image = transparentCanvas.toDataURL('image/png');
       this.downloadImage = blackCanvas.toDataURL('image/png');
-      this.image = transparentPoseSrc
     },
     makeCanvas: function (width, height) {
       const canvas = document.createElement('canvas');
@@ -95,11 +93,6 @@ export default {
       ctx.lineWidth = 9;
       ctx.stroke();
     },
-    addImageOverlayToCanvas: function (ctx, imageSrc) {
-      const transparentPoseImage = new Image();
-      transparentPoseImage.src = imageSrc;
-      ctx.drawImage(transparentPoseImage, 0, 0);
-    }
   }
 };
 </script>
