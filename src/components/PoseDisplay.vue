@@ -110,7 +110,7 @@ export default {
         :src="`https://openposes-storage.s3.ca-central-1.amazonaws.com/poses/${this.modelStore.selectedModel}/jpg/${pose.name}.jpg`"
         :alt="`${this.modelStore.selectedModel}_${pose.name}`"/>
     <img v-if="image" :src="image" :alt="pose.name"/>
-    <div v-if="image">
+    <div v-if="image" class="download">
       <h3>Download</h3>
       <div>
         <a target="_blank" :href="`https://openposes-storage.s3.ca-central-1.amazonaws.com/poses/${pose.name}.json`"
@@ -118,7 +118,7 @@ export default {
         <a target="_blank" :href="downloadImage" :download="`${pose.name}.png`"><image-icon/>Image</a>
       </div>
     </div>
-    <div v-if="!image" class="loading">
+    <div v-if="!image && !downloadImage" class="loading">
       <loader-icon/>
     </div>
   </div>
@@ -147,7 +147,7 @@ export default {
     }
   }
 
-  > div {
+  .download {
     position: absolute;
     width: 100%;
     bottom: 0;
@@ -170,6 +170,7 @@ export default {
         padding: 10px 0;
         flex-grow: 1;
         text-decoration: none;
+        background-color: rgba(0, 0, 0, 0.5);
         transition: color 0.1s ease, background-color 0.05s ease;
 
         svg {
